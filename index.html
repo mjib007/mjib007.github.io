@@ -110,21 +110,23 @@
   }
   .hero-inner {
     position: relative;
-    max-width: 1100px;
+    max-width: 1060px;
     display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 4rem;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
     align-items: center;
+    padding-right: 2rem;
   }
   .hero-text { /* left column */ }
   .hero-photo-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 1.5rem;
   }
   .hero-photo {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -133,11 +135,9 @@
     filter: brightness(1.05) contrast(1.02);
   }
   @media (max-width: 780px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-    }
-    .hero-photo-wrap { order: -1; }
-    .hero-photo { width: 180px; height: 180px; }
+    .hero-inner { grid-template-columns: 1fr; padding-right: 0; }
+    .hero-photo-wrap { order: -1; padding-right: 0; }
+    .hero-photo { width: 160px; height: 160px; }
   }
   .hero-eyebrow {
     font-size: 0.78rem;
@@ -156,14 +156,14 @@
   .hero-divider {
     width: 80px; height: 2px;
     background: linear-gradient(90deg, var(--gold), transparent);
-    margin: 1.4rem 0;
+    margin: 1rem 0 0.8rem;
   }
   .hero-name-zh {
     font-family: 'Playfair Display', serif;
     font-size: clamp(1.4rem, 3.5vw, 2.4rem);
     color: var(--gold-lt);
     font-weight: 400;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
   }
   .hero-tagline {
     font-size: clamp(0.95rem, 1.8vw, 1.15rem);
@@ -176,15 +176,16 @@
     color: rgba(226,201,126,0.7);
     font-size: 0.88em;
   }
-  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .badge {
-    padding: 0.35rem 1rem;
+    padding: 0.35rem 0.9rem;
     border: 1px solid var(--border);
     border-radius: 2px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--gold-lt);
     letter-spacing: 0.04em;
     cursor: default;
+    white-space: nowrap;
   }
   .hero-cta { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
