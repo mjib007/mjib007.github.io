@@ -108,7 +108,37 @@
     position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  .hero-inner { position: relative; max-width: 860px; }
+  .hero-inner {
+    position: relative;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-text { /* left column */ }
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-photo {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 8px rgba(201,168,76,0.12), 0 20px 60px rgba(0,0,0,0.5);
+    filter: brightness(1.05) contrast(1.02);
+  }
+  @media (max-width: 780px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+    .hero-photo-wrap { order: -1; }
+    .hero-photo { width: 180px; height: 180px; }
+  }
   .hero-eyebrow {
     font-size: 0.78rem;
     letter-spacing: 0.18em;
@@ -326,24 +356,34 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <p class="hero-eyebrow">Law × AI × Code</p>
-    <h1 class="hero-name">Jackie Chien</h1>
-    <div class="hero-divider"></div>
-    <p class="hero-name-zh">錢世傑</p>
-    <div class="hero-tagline" data-bi>
-      <span class="en">Legal scholar. AI educator. Builder of tools where jurisprudence meets Python.</span>
-      <span class="zh">法律人、AI 講師、用程式碼寫判決以外另一半未來的人。</span>
+    <!-- LEFT: text -->
+    <div class="hero-text">
+      <p class="hero-eyebrow">Law × AI × Code</p>
+      <h1 class="hero-name">Jackie Chien</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-name-zh">錢世傑</p>
+      <div class="hero-tagline" data-bi>
+        <span class="en">Legal scholar. AI educator. Builder of tools where jurisprudence meets Python.</span>
+        <span class="zh">法律人、AI 兼任助理教授、用程式碼寫判決以外另一半未來的人。</span>
+      </div>
+      <div class="hero-badges">
+        <span class="badge" data-bi>⚖️ Taiwan Law Foundation <span class="zh-inline">台灣法律基金會</span></span>
+        <span class="badge" data-bi>🎓 Adjunct Asst. Professor <span class="zh-inline">大學兼任助理教授</span></span>
+        <span class="badge" data-bi>🤖 70+ AI Tools <span class="zh-inline">工具整合</span></span>
+        <span class="badge" data-bi>📦 Open Source <span class="zh-inline">開源</span></span>
+        <span class="badge" data-bi>❤️ 188 Public Welfare Classes 2026 <span class="zh-inline">公益課程</span></span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/mjib007" target="_blank">View GitHub</a>
+        <a class="btn btn-ghost" href="#projects">See Projects</a>
+      </div>
     </div>
-    <div class="hero-badges">
-      <span class="badge" data-bi>⚖️ Taiwan Law Foundation <span class="zh-inline">台灣法律基金會</span></span>
-      <span class="badge" data-bi>🎓 Adjunct Asst. Professor <span class="zh-inline">大學兼任助理教授</span></span>
-      <span class="badge" data-bi>🤖 70+ AI Tools <span class="zh-inline">工具整合</span></span>
-      <span class="badge" data-bi>📦 Open Source <span class="zh-inline">開源</span></span>
-      <span class="badge" data-bi>❤️ 188 Public Welfare Classes 2026 <span class="zh-inline">公益課程</span></span>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://github.com/mjib007" target="_blank">View GitHub</a>
-      <a class="btn btn-ghost" href="#projects">See Projects</a>
+    <!-- RIGHT: photo -->
+    <div class="hero-photo-wrap">
+      <img class="hero-photo"
+           src="https://mjib007.github.io/avatar.jpg"
+           alt="Jackie Chien 錢世傑"
+           onerror="this.style.display='none'">
     </div>
   </div>
 </section>
@@ -361,8 +401,8 @@
           <span class="zh">我站在法律、教育與科技的交界處——把法律專業轉化為 Python 驅動的 FinTech API、LLM 法律助理，以及解決真實問題的 AI Agent。</span>
         </p>
         <p data-bi style="margin-top:1rem">
-          <span class="en">As Executive Director of the Taiwan Law Foundation and a university lecturer in AI applications, I believe the next generation of legal professionals needs to master both jurisprudence and code. <strong style="color:var(--gold-lt)">All course revenue is directed to the Foundation</strong> to fund cross-disciplinary talent development.</span>
-          <span class="zh">身為台灣法律基金會執行長與大學 AI 應用課程講師，我相信下一個世代的法律人，需要同時掌握法律思維與程式能力。所有課程收益均捐贈基金會。</span>
+          <span class="en">As Executive Director of the Taiwan Law Foundation and a university adjunct assistant professor in AI applications, I believe the next generation of legal professionals needs to master both jurisprudence and code. <strong style="color:var(--gold-lt)">All course revenue is directed to the Foundation</strong> to fund cross-disciplinary talent development.</span>
+          <span class="zh">身為台灣法律基金會執行長與大學 AI 應用課程兼任助理教授，我相信下一個世代的法律人，需要同時掌握法律思維與程式能力。所有課程收益均捐贈基金會。</span>
         </p>
         <div class="about-quote">
           "The future of law is written half in judgments, and half in code."
