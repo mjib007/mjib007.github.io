@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,10 @@
     --cream:   #F5F0E8;
     --ink:     #1A0F08;
     --muted:   #7A6A5A;
-    --card-bg: #FFFFFF;
     --border:  rgba(201,168,76,0.25);
   }
 
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Inter', sans-serif;
     background: var(--cream);
@@ -29,6 +27,37 @@
     line-height: 1.7;
     font-size: 16px;
   }
+
+  /* ── BILINGUAL CORE ──
+     .en  = always visible (default)
+     .zh  = hidden; appears on hover of nearest [data-bi] ancestor
+     [data-bi]:hover .zh  → fade in
+     [data-bi]:hover .en  → slight dim (optional)
+  */
+  .zh {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    font-size: 0.85em;
+    color: var(--gold-lt);
+    transition: max-height 0.35s ease, opacity 0.35s ease;
+    line-height: 1.5;
+    margin-top: 0;
+  }
+  [data-bi]:hover .zh {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 0.35rem;
+  }
+  /* inline zh (for short labels / badges) */
+  .zh-inline {
+    display: none;
+    font-size: 0.82em;
+    color: var(--gold-lt);
+    margin-left: 0.4em;
+  }
+  [data-bi]:hover .zh-inline { display: inline; }
 
   /* ── NAV ── */
   nav {
@@ -47,16 +76,23 @@
     letter-spacing: 0.03em;
     text-decoration: none;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
   .nav-links a {
     color: rgba(245,240,232,0.75);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--gold); }
+  .nav-hint {
+    font-size: 0.7rem;
+    color: rgba(201,168,76,0.5);
+    letter-spacing: 0.04em;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
 
   /* ── HERO ── */
   #hero {
@@ -70,8 +106,7 @@
   #hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 1;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   .hero-inner { position: relative; max-width: 860px; }
   .hero-eyebrow {
@@ -87,7 +122,6 @@
     font-weight: 700;
     color: var(--cream);
     line-height: 1.05;
-    margin-bottom: 0;
   }
   .hero-divider {
     width: 80px; height: 2px;
@@ -102,11 +136,15 @@
     margin-bottom: 1.8rem;
   }
   .hero-tagline {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: rgba(245,240,232,0.72);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: rgba(245,240,232,0.75);
     max-width: 600px;
-    line-height: 1.8;
+    line-height: 1.85;
     margin-bottom: 2.4rem;
+  }
+  .hero-tagline .zh {
+    color: rgba(226,201,126,0.7);
+    font-size: 0.88em;
   }
   .hero-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; }
   .badge {
@@ -115,12 +153,10 @@
     border-radius: 2px;
     font-size: 0.8rem;
     color: var(--gold-lt);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    cursor: default;
   }
-  .hero-cta {
-    margin-top: 2.8rem;
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-cta { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-block;
     padding: 0.75rem 1.8rem;
@@ -132,18 +168,12 @@
     transition: all 0.2s;
     border-radius: 2px;
   }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--ink);
-  }
+  .btn-primary { background: var(--gold); color: var(--ink); }
   .btn-primary:hover { background: var(--gold-lt); }
-  .btn-ghost {
-    border: 1px solid var(--gold);
-    color: var(--gold);
-  }
+  .btn-ghost { border: 1px solid var(--gold); color: var(--gold); }
   .btn-ghost:hover { background: rgba(201,168,76,0.1); }
 
-  /* ── SECTION SHARED ── */
+  /* ── SECTIONS ── */
   section { padding: 90px 5vw; }
   .section-label {
     font-size: 0.72rem;
@@ -157,25 +187,15 @@
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 600;
     color: var(--wood);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
-  .section-rule {
-    width: 48px; height: 2px;
-    background: var(--gold);
-    margin: 1.2rem 0 2.8rem;
-  }
+  .section-rule { width: 48px; height: 2px; background: var(--gold); margin: 1.2rem 0 2.8rem; }
   .container { max-width: 1100px; margin: 0 auto; }
 
   /* ── ABOUT ── */
   #about { background: var(--wood); }
   #about .section-title { color: var(--cream); }
-  #about .section-label { color: var(--gold); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
   .about-text { color: rgba(245,240,232,0.82); font-size: 1rem; line-height: 1.9; }
   .about-text p + p { margin-top: 1rem; }
   .about-quote {
@@ -199,7 +219,7 @@
     border-bottom: 1px solid var(--border);
   }
   .role-table td {
-    padding: 0.8rem 0.5rem 0.8rem 0;
+    padding: 0.75rem 0.5rem 0.75rem 0;
     color: rgba(245,240,232,0.8);
     font-size: 0.9rem;
     border-bottom: 1px solid rgba(201,168,76,0.1);
@@ -209,11 +229,7 @@
 
   /* ── PROJECTS ── */
   #projects { background: var(--cream); }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 1.5rem;
-  }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem; }
   .project-card {
     background: #fff;
     border: 1px solid rgba(44,24,16,0.1);
@@ -224,127 +240,69 @@
     color: inherit;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
-  .project-card:hover {
-    box-shadow: 0 8px 32px rgba(44,24,16,0.12);
-    transform: translateY(-3px);
-  }
+  .project-card:hover { box-shadow: 0 8px 32px rgba(44,24,16,0.12); transform: translateY(-3px); }
   .project-icon { font-size: 1.6rem; margin-bottom: 1rem; }
   .project-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--wood);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.7;
-    flex: 1;
-    margin-bottom: 1.2rem;
-  }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .tag {
-    font-size: 0.72rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(201,168,76,0.12);
+  .project-desc-en { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  /* zh desc slides in below en desc on hover */
+  .project-card .zh {
     color: #8B6914;
-    border-radius: 2px;
-    font-weight: 500;
+    font-size: 0.83rem;
   }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+  .tag { font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(201,168,76,0.12); color: #8B6914; border-radius: 2px; font-weight: 500; }
 
   /* ── PLATFORM ── */
   #platform { background: #F0EAE0; }
-  .platform-intro {
-    max-width: 700px;
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .stages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
+  #platform .section-title { color: var(--wood); }
+  .platform-intro { max-width: 700px; font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; }
+  .stages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
   .stage-card {
     background: #fff;
     border-left: 3px solid var(--gold);
     padding: 1.2rem 1.4rem;
     border-radius: 0 3px 3px 0;
+    cursor: default;
   }
-  .stage-num {
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
+  .stage-num { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.3rem; }
   .stage-name { font-size: 0.95rem; font-weight: 600; color: var(--wood); }
-  .stage-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+  .stage-card .zh { font-size: 0.8rem; color: var(--muted); }
 
-  /* ── TECH STACK ── */
+  /* ── TECH ── */
   #tech { background: var(--cream); }
   .tech-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
-  .tech-group-title {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .tech-group-title { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
   .tech-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .pill {
-    background: var(--wood);
-    color: var(--cream);
-    font-size: 0.78rem;
-    padding: 0.3rem 0.75rem;
-    border-radius: 2px;
-  }
+  .pill { background: var(--wood); color: var(--cream); font-size: 0.78rem; padding: 0.3rem 0.75rem; border-radius: 2px; }
 
   /* ── CONTACT ── */
-  #contact {
-    background: var(--wood);
-    text-align: center;
-    padding: 80px 5vw;
-  }
+  #contact { background: var(--wood); text-align: center; padding: 80px 5vw; }
   #contact .section-title { color: var(--cream); }
-  #contact .section-label { color: var(--gold); }
   #contact .section-rule { margin: 1.2rem auto 2.5rem; }
-  .contact-sub {
-    color: rgba(245,240,232,0.65);
-    font-size: 1rem;
-    margin-bottom: 2.5rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .contact-sub { color: rgba(245,240,232,0.65); font-size: 1rem; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .contact-sub .zh { color: rgba(226,201,126,0.65); font-size: 0.88em; }
   .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--ink);
-    color: rgba(245,240,232,0.4);
-    text-align: center;
-    font-size: 0.78rem;
-    padding: 1.5rem;
-    letter-spacing: 0.05em;
-  }
+  footer { background: var(--ink); color: rgba(245,240,232,0.4); text-align: center; font-size: 0.78rem; padding: 1.5rem; letter-spacing: 0.05em; }
 
-  /* ── SCROLL REVEAL ── */
+  /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
-    .nav-links { display: none; }
+    .nav-links li:not(:last-child) { display: none; }
+    .nav-hint { display: none; }
     .about-grid { grid-template-columns: 1fr; }
-    .hero-name { font-size: 2.6rem; }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
   }
@@ -354,13 +312,14 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">Jackie Chien</a>
+  <a class="nav-logo" href="#hero">Jackie Chien · 錢世傑</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#platform">Platform</a></li>
     <li><a href="#tech">Stack</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><span class="nav-hint">hover for 中文</span></li>
   </ul>
 </nav>
 
@@ -371,16 +330,16 @@
     <h1 class="hero-name">Jackie Chien</h1>
     <div class="hero-divider"></div>
     <p class="hero-name-zh">錢世傑</p>
-    <p class="hero-tagline">
-      Legal scholar. AI educator. Builder of tools where jurisprudence meets Python.<br>
-      法律人、AI 講師、用程式碼寫判決以外另一半未來的人。
-    </p>
+    <div class="hero-tagline" data-bi>
+      <span class="en">Legal scholar. AI educator. Builder of tools where jurisprudence meets Python.</span>
+      <span class="zh">法律人、AI 講師、用程式碼寫判決以外另一半未來的人。</span>
+    </div>
     <div class="hero-badges">
-      <span class="badge">⚖️ Taiwan Law Foundation</span>
-      <span class="badge">🎓 University Lecturer</span>
-      <span class="badge">🤖 70+ AI Tools</span>
-      <span class="badge">📦 Open Source</span>
-      <span class="badge">❤️ 188 Public Welfare Classes 2026</span>
+      <span class="badge" data-bi>⚖️ Taiwan Law Foundation <span class="zh-inline">台灣法律基金會</span></span>
+      <span class="badge" data-bi>🎓 University Lecturer <span class="zh-inline">大學兼任講師</span></span>
+      <span class="badge" data-bi>🤖 70+ AI Tools <span class="zh-inline">工具整合</span></span>
+      <span class="badge" data-bi>📦 Open Source <span class="zh-inline">開源</span></span>
+      <span class="badge" data-bi>❤️ 188 Public Welfare Classes 2026 <span class="zh-inline">公益課程</span></span>
     </div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://github.com/mjib007" target="_blank">View GitHub</a>
@@ -396,24 +355,42 @@
     <h2 class="section-title">Legal Professional &amp; AI Educator</h2>
     <div class="section-rule"></div>
     <div class="about-grid">
-      <div>
-        <div class="about-text">
-          <p>I work at the intersection of <strong style="color:var(--gold-lt)">law, education, and technology</strong> — turning legal expertise into Python-powered FinTech APIs, LLM-driven legal assistants, and AI agents that solve real-world problems.</p>
-          <p>As Executive Director of the Taiwan Law Foundation and a university lecturer in AI applications, I believe the next generation of legal professionals needs to master both jurisprudence and code. <strong style="color:var(--gold-lt)">All course revenue is directed to the Foundation</strong> to fund cross-disciplinary talent development.</p>
-          <div class="about-quote">
-            "The future of law is written half in judgments,<br>and half in code."<br>
-            <span style="font-size:0.85rem;opacity:0.7">法律的未來，一半寫在判決裡，另一半寫在程式碼中。</span>
-          </div>
+      <div class="about-text">
+        <p data-bi>
+          <span class="en">I work at the intersection of <strong style="color:var(--gold-lt)">law, education, and technology</strong> — turning legal expertise into Python-powered FinTech APIs, LLM-driven legal assistants, and AI agents that solve real-world problems.</span>
+          <span class="zh">我站在法律、教育與科技的交界處——把法律專業轉化為 Python 驅動的 FinTech API、LLM 法律助理，以及解決真實問題的 AI Agent。</span>
+        </p>
+        <p data-bi style="margin-top:1rem">
+          <span class="en">As Executive Director of the Taiwan Law Foundation and a university lecturer in AI applications, I believe the next generation of legal professionals needs to master both jurisprudence and code. <strong style="color:var(--gold-lt)">All course revenue is directed to the Foundation</strong> to fund cross-disciplinary talent development.</span>
+          <span class="zh">身為台灣法律基金會執行長與大學 AI 應用課程講師，我相信下一個世代的法律人，需要同時掌握法律思維與程式能力。所有課程收益均捐贈基金會。</span>
+        </p>
+        <div class="about-quote">
+          "The future of law is written half in judgments, and half in code."
         </div>
       </div>
       <div>
         <table class="role-table">
           <tr><th>Role</th><th>Institution / Course</th></tr>
-          <tr><td>執行長</td><td>台灣法律基金會 Taiwan Law Foundation</td></tr>
-          <tr><td>兼任講師</td><td>國立中央大學 — 商事法</td></tr>
-          <tr><td>兼任講師</td><td>中原大學 — AI、AI Agent</td></tr>
-          <tr><td>兼任講師</td><td>輔仁大學 — AI 應用</td></tr>
-          <tr><td>兼任講師</td><td>國立中正大學 — AI 文獻分析</td></tr>
+          <tr data-bi>
+            <td><span class="en">Executive Director</span><span class="zh">執行長</span></td>
+            <td><span class="en">Taiwan Law Foundation</span><span class="zh">台灣法律基金會</span></td>
+          </tr>
+          <tr data-bi>
+            <td><span class="en">Adjunct Lecturer</span><span class="zh">兼任講師</span></td>
+            <td><span class="en">NCU — Business Law</span><span class="zh">國立中央大學 — 商事法</span></td>
+          </tr>
+          <tr data-bi>
+            <td><span class="en">Adjunct Lecturer</span><span class="zh">兼任講師</span></td>
+            <td><span class="en">Chung Yuan — AI Agent</span><span class="zh">中原大學 — AI、AI Agent</span></td>
+          </tr>
+          <tr data-bi>
+            <td><span class="en">Adjunct Lecturer</span><span class="zh">兼任講師</span></td>
+            <td><span class="en">Fu Jen — AI Applications</span><span class="zh">輔仁大學 — AI 應用</span></td>
+          </tr>
+          <tr data-bi>
+            <td><span class="en">Adjunct Lecturer</span><span class="zh">兼任講師</span></td>
+            <td><span class="en">CCU — AI Literature Analysis</span><span class="zh">國立中正大學 — AI 文獻分析</span></td>
+          </tr>
         </table>
       </div>
     </div>
@@ -424,63 +401,71 @@
 <section id="projects">
   <div class="container">
     <p class="section-label reveal">Featured Projects</p>
-    <h2 class="section-title reveal">重點開源專案</h2>
+    <h2 class="section-title reveal">Open Source Work</h2>
     <div class="section-rule reveal"></div>
     <div class="projects-grid">
 
-      <a class="project-card reveal" href="https://github.com/mjib007/legal-essay-tutor" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/legal-essay-tutor" target="_blank">
         <div class="project-icon">🎓</div>
-        <div class="project-title">法律申論題家教老師</div>
-        <div class="project-desc">以蘇格拉底問答法為核心的刑法 AI 教練，提供問答引導、逐段批改、標準答案示範三種模式，零技術門檻。</div>
+        <div class="project-title">Legal Essay Tutor</div>
+        <div class="project-desc-en">A Socratic AI tutor for Taiwan criminal law essay questions. Three modes: guided dialogue, paragraph grading, and model answer demonstration.</div>
+        <span class="zh">以蘇格拉底問答法為核心的刑法 AI 教練，提供問答引導、逐段批改、標準答案示範，零技術門檻。</span>
         <div class="project-tags"><span class="tag">Claude</span><span class="tag">Prompt Engineering</span><span class="tag">Legal AI</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/legal-thesis-topic" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/legal-thesis-topic" target="_blank">
         <div class="project-icon">🔍</div>
-        <div class="project-title">法學論文題目助教</div>
-        <div class="project-desc">8 步驟引導碩士生確認差異化論文題目，內建管轄權提醒與文獻關聯性分析。提供 SKILL / Prompt / 互動網頁三版。</div>
+        <div class="project-title">Thesis Topic Finder</div>
+        <div class="project-desc-en">AI-assisted thesis topic finder for law students. 8-step process from starting point to a differentiated, validated research topic.</div>
+        <span class="zh">8 步驟引導碩士生確認差異化論文題目，內建管轄權提醒與外文文獻關聯性分析。</span>
         <div class="project-tags"><span class="tag">Claude</span><span class="tag">Gemini</span><span class="tag">Legal AI</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/contract-review" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/contract-review" target="_blank">
         <div class="project-icon">⚖️</div>
-        <div class="project-title">contract-review</div>
-        <div class="project-desc">以 LLM（GPT / Gemini / Claude）自動審查契約條款，依五條審查規則逐條分析並產出可下載報告。</div>
+        <div class="project-title">Contract Review</div>
+        <div class="project-desc-en">LLM-powered contract clause auditor (GPT / Gemini / Claude). Five review rules, structured output, downloadable report.</div>
+        <span class="zh">以 LLM 自動審查契約條款，依五條規則逐條分析並產出可下載報告。</span>
         <div class="project-tags"><span class="tag">GPT</span><span class="tag">Gemini</span><span class="tag">LegalTech</span><span class="tag">Colab</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/taiwan-stock-cashflow-api" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/taiwan-stock-cashflow-api" target="_blank">
         <div class="project-icon">📊</div>
-        <div class="project-title">taiwan-stock-cashflow-api</div>
-        <div class="project-desc">部署於 Zeabur 的 Flask RESTful API，串接 FinMind 財報資料，六大現金流法則自動產出投資分析摘要。</div>
+        <div class="project-title">Taiwan Stock Cashflow API</div>
+        <div class="project-desc-en">Production Flask RESTful API on Zeabur. Pulls FinMind quarterly data and applies six proprietary cash flow rules for investment analysis.</div>
+        <span class="zh">串接 FinMind 財報資料的 Flask API，六大現金流法則自動輸出投資分析摘要，CI/CD 部署於 Zeabur。</span>
         <div class="project-tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">FinMind</span><span class="tag">Zeabur</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/revenue-yoy-backtest" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/revenue-yoy-backtest" target="_blank">
         <div class="project-icon">📈</div>
-        <div class="project-title">revenue-yoy-backtest</div>
-        <div class="project-desc">月營收 YoY 超過門檻時買入 N 天的勝率回測框架，教材版/單格版/自然語言版，專為非程式背景學員設計。</div>
+        <div class="project-title">Revenue YoY Backtest</div>
+        <div class="project-desc-en">Backtesting framework: "When monthly revenue YoY exceeds a threshold, what is the N-day holding win rate?" Three versions for non-programmers.</div>
+        <span class="zh">月營收 YoY 超過門檻時買入的回測框架，教材版/單格版/自然語言版，專為非程式背景設計。</span>
         <div class="project-tags"><span class="tag">FinMind</span><span class="tag">yfinance</span><span class="tag">Backtest</span><span class="tag">Vibe Coding</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/openclaw" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/openclaw" target="_blank">
         <div class="project-icon">🦞</div>
         <div class="project-title">MiniClaw 小龍蝦</div>
-        <div class="project-desc">70+ 工具、15 個類別的個人 AI 助理，整合財務分析、法律研究、智慧家電、OSINT 等，持續演化為投資 AI 助理。</div>
+        <div class="project-desc-en">Personal Telegram AI assistant integrating 70+ tools across 15 categories: FinTech, legal research, smart home, OSINT, time-series forecasting, and more.</div>
+        <span class="zh">整合 70+ 工具、橫跨 15 類別的個人 AI 助理，涵蓋金融分析、法律研究、智慧家電、OSINT 等，持續演化中。</span>
         <div class="project-tags"><span class="tag">Telegram Bot</span><span class="tag">GPT-4o</span><span class="tag">TimesFM</span><span class="tag">OSINT</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/yolo-stock-pattern-tutorial" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/yolo-stock-pattern-tutorial" target="_blank">
         <div class="project-icon">🎬</div>
-        <div class="project-title">yolo-stock-pattern-tutorial</div>
-        <div class="project-desc">YOLOv8 辨識頭肩底/頭肩頂/M頭/W底等股票圖形，附 Colab 實作教學。</div>
+        <div class="project-title">YOLO Stock Pattern Tutorial</div>
+        <div class="project-desc-en">YOLOv8 stock chart pattern recognition — head-and-shoulders, double top/bottom. Hands-on Colab notebooks included.</div>
+        <span class="zh">YOLOv8 辨識頭肩底/頭肩頂/M頭/W底等股票圖形，附 Colab 實作教學。</span>
         <div class="project-tags"><span class="tag">YOLOv8</span><span class="tag">Python</span><span class="tag">Colab</span></div>
       </a>
 
-      <a class="project-card reveal" href="https://github.com/mjib007/taiwan-law-ai-course" target="_blank">
+      <a class="project-card reveal" data-bi href="https://github.com/mjib007/taiwan-law-ai-course" target="_blank">
         <div class="project-icon">📚</div>
-        <div class="project-title">taiwan-law-ai-course</div>
-        <div class="project-desc">依時間與主題分類的法律人 AI 課程教材庫，涵蓋 GitHub、FinTech、LegalTech，所有課程收益捐贈基金會。</div>
+        <div class="project-title">Taiwan Law × AI Course</div>
+        <div class="project-desc-en">Structured course material repository for legal professionals learning AI. GitHub, FinTech, LegalTech. All revenue donated to the Foundation.</div>
+        <span class="zh">依時間與主題分類的法律人 AI 課程教材庫，所有課程收益捐贈台灣法律基金會。</span>
         <div class="project-tags"><span class="tag">AI Education</span><span class="tag">Public Welfare</span><span class="tag">Traditional Chinese</span></div>
       </a>
 
@@ -492,18 +477,21 @@
 <section id="platform">
   <div class="container">
     <p class="section-label reveal">Investigative Platform</p>
-    <h2 class="section-title reveal">福爾摩斯 &amp; 華生 AI 辦案平台</h2>
+    <h2 class="section-title reveal">Holmes &amp; Watson AI Investigation</h2>
     <div class="section-rule reveal"></div>
-    <p class="platform-intro reveal">針對第一線執法人員設計的八階段辦案工作流程，整合 17 個系統，從案源發現到判決全程 AI 輔助。</p>
+    <p class="platform-intro reveal" data-bi>
+      <span class="en">An eight-stage AI-assisted investigative workflow designed for frontline law enforcement, spanning 17 integrated systems from case discovery to prosecution.</span>
+      <span class="zh">針對第一線執法人員設計的八階段辦案工作流程，整合 17 個系統，從案源發現到判決全程 AI 輔助。</span>
+    </p>
     <div class="stages-grid">
-      <div class="stage-card reveal"><div class="stage-num">Stage 01</div><div class="stage-name">案源發現</div><div class="stage-desc">Case Source Discovery</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 02</div><div class="stage-name">證據蒐集</div><div class="stage-desc">Evidence Gathering</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 03</div><div class="stage-name">案情分析</div><div class="stage-desc">Case Analysis</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 04</div><div class="stage-name">目標鎖定</div><div class="stage-desc">Target Identification</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 05</div><div class="stage-name">搜索逮捕</div><div class="stage-desc">Search &amp; Arrest</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 06</div><div class="stage-name">偵訊</div><div class="stage-desc">Interrogation</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 07</div><div class="stage-name">移送</div><div class="stage-desc">Case Transfer</div></div>
-      <div class="stage-card reveal"><div class="stage-num">Stage 08</div><div class="stage-name">起訴與判決</div><div class="stage-desc">Prosecution &amp; Judgment</div></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 01</div><div class="stage-name">Case Source Discovery</div><span class="zh">案源發現</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 02</div><div class="stage-name">Evidence Gathering</div><span class="zh">證據蒐集</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 03</div><div class="stage-name">Case Analysis</div><span class="zh">案情分析</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 04</div><div class="stage-name">Target Identification</div><span class="zh">目標鎖定</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 05</div><div class="stage-name">Search &amp; Arrest</div><span class="zh">搜索逮捕</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 06</div><div class="stage-name">Interrogation</div><span class="zh">偵訊</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 07</div><div class="stage-name">Case Transfer</div><span class="zh">移送</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 08</div><div class="stage-name">Prosecution &amp; Judgment</div><span class="zh">起訴與判決</span></div>
     </div>
   </div>
 </section>
@@ -512,7 +500,7 @@
 <section id="tech">
   <div class="container">
     <p class="section-label reveal">Tech Stack</p>
-    <h2 class="section-title reveal">技術棧</h2>
+    <h2 class="section-title reveal">Tools &amp; Technologies</h2>
     <div class="section-rule reveal"></div>
     <div class="tech-groups">
       <div class="reveal">
@@ -547,9 +535,12 @@
 <section id="contact">
   <div class="container">
     <p class="section-label">Connect</p>
-    <h2 class="section-title">聯絡我</h2>
+    <h2 class="section-title">Get in Touch</h2>
     <div class="section-rule"></div>
-    <p class="contact-sub">歡迎合作邀約、演講邀請、或只是想聊聊 AI 與法律的未來。</p>
+    <p class="contact-sub" data-bi>
+      <span class="en">Open to collaboration, speaking invitations, and conversations about the future of law and AI.</span>
+      <span class="zh">歡迎合作邀約、演講邀請，或只是想聊聊 AI 與法律的未來。</span>
+    </p>
     <div class="contact-links">
       <a class="btn btn-primary" href="mailto:mjib007@gmail.com">✉️ mjib007@gmail.com</a>
       <a class="btn btn-ghost" href="https://github.com/mjib007" target="_blank">GitHub</a>
@@ -570,6 +561,5 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => obs.observe(r));
 </script>
-
 </body>
 </html>
