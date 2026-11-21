@@ -96,10 +96,10 @@
 
   /* ── HERO ── */
   #hero {
-    min-height: 100vh;
+    min-height: 0;
     background: linear-gradient(160deg, var(--wood) 0%, #1A0F08 55%, #0F0704 100%);
     display: flex; flex-direction: column; justify-content: center;
-    padding: 80px 5vw 60px;
+    padding: 110px 5vw 70px;
     position: relative;
     overflow: hidden;
   }
@@ -199,7 +199,9 @@
     transition: all 0.2s;
     border-radius: 2px;
   }
-  .visitor-count { margin-top: 1.6rem; }
+  .nav-cta { display: flex; gap: 0.6rem; }
+  .btn-sm { padding: 0.45rem 1rem; font-size: 0.74rem; }
+  .visitor-count { margin-top: 0.4rem; }
   .visitor-count img { height: 20px; opacity: 0.9; display: block; }
   .btn-primary { background: var(--gold); color: var(--ink); }
   .btn-primary:hover { background: var(--gold-lt); }
@@ -419,7 +421,10 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">Jackie Chien · 錢世傑</a>
+  <div class="nav-cta">
+    <a class="btn btn-primary btn-sm" href="#courses">Explore Courses</a>
+    <a class="btn btn-ghost btn-sm" href="https://github.com/mjib007" target="_blank">View GitHub</a>
+  </div>
   <ul class="nav-links">
     <li><a href="#news">News</a></li>
     <li><a href="#courses">Courses</a></li>
@@ -435,25 +440,14 @@
   <div class="hero-inner">
     <!-- LEFT: text -->
     <div class="hero-text">
-      <a class="hero-news" href="#news"><span class="new-badge">NEW</span> Nov 21 · TAAI 2026 talk video · 研討會簡報影音 →</a>
-      <p class="hero-eyebrow">Law × AI × Code</p>
+      <a class="hero-news" href="#news"><span class="new-badge">NEW</span> Nov 21 · TAAI 2026 talk video →</a>
+      <p class="hero-eyebrow">Law × AI</p>
       <h1 class="hero-name">Jackie Chien</h1>
       <div class="hero-divider"></div>
       <p class="hero-name-zh">錢世傑</p>
       <div class="hero-tagline" data-bi>
         <span class="en">Legal scholar. AI educator. Builder of tools where jurisprudence meets Python.</span>
         <span class="zh">法律人、AI 兼任助理教授、用程式碼寫判決以外另一半未來的人。</span>
-      </div>
-      <div class="hero-badges">
-        <span class="badge" data-bi>⚖️ Taiwan Law Foundation <span class="zh-inline">台灣法律基金會</span></span>
-        <span class="badge" data-bi>🎓 Adjunct Asst. Professor <span class="zh-inline">大學兼任助理教授</span></span>
-        <span class="badge" data-bi>🤖 70+ AI Tools <span class="zh-inline">工具整合</span></span>
-        <span class="badge" data-bi>📦 Open Source <span class="zh-inline">開源</span></span>
-        <span class="badge" data-bi>❤️ 188 Public Welfare Classes 2026 <span class="zh-inline">公益課程</span></span>
-      </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#courses">Explore Courses</a>
-        <a class="btn btn-ghost" href="https://github.com/mjib007" target="_blank">View GitHub</a>
       </div>
       <div class="visitor-count">
         <img src="https://visitor-badge.laobi.icu/badge?page_id=mjib007.github.io&amp;left_text=Visitors%20%E8%A8%AA%E5%AE%A2"
