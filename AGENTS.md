@@ -4,7 +4,7 @@
 
 ## 首頁順序
 
-封面（含 NEW 公告列）→ **最新消息 Latest News** → **課程網站 Course Sites**（目前重點）→ About → Platform → Stack → Earlier Open Source Work → Contact
+封面（只有名字、簡介、訪客計數器；按鈕在頂端選單列）→ **最新消息 Latest News** → **課程網站 Course Sites**（目前重點）→ About → Platform → Stack → Earlier Open Source Work → Contact
 
 ## 最新消息：什麼時候要更新
 
@@ -14,7 +14,7 @@
 
 1. `<!-- NEWS -->` 區塊：標題 `section-title` 換成新消息；內容放在 `.news-item`（左邊影片或圖片，右邊日期 `.news-date`、標題 `.news-title`、說明 `.news-desc`、連結 `.news-links`）。
 2. **新的放最上面**。同時保留最多 3 則；更舊的移除，或改成一行連結放在消息下方。
-3. 封面的 `.hero-news` 公告列換成最新一則（格式：`NEW` + 日期 · 英文短標 · 中文短標 →），連到 `#news`。
+3. 封面不放公告列、徽章或標語（Jackie 2026-11-22 要求精簡）；最新消息只在 `#news` 區塊。
 4. 日期用英文月份（例：Nov 21, 2026）；中文說明寫在 `.zh`。
 5. 影片用 `https://www.youtube-nocookie.com/embed/<影片ID>` 嵌入；本機用 file:// 開會顯示錯誤 153，要用 `python -m http.server` 開網址預覽。
 6. 預覽電腦（1280 寬）與手機（375 寬），確認沒有橫向捲動、沒有主控台錯誤，再請 Jackie 確認。
