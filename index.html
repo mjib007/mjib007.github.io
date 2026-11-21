@@ -258,27 +258,48 @@
   }
   .role-table td:first-child { color: var(--cream); font-weight: 500; padding-right: 1.2rem; white-space: nowrap; }
 
-  /* ── TALK ── */
-  #talk { background: var(--cream); }
-  .talk-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 2.5rem; align-items: start; }
+  /* ── COURSES ── */
+  #courses { background: var(--cream); }
+  .courses-intro { max-width: 720px; font-size: 1rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.6rem; }
+  .courses-intro .zh { color: #8B6914; }
+  .courses-stats { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-bottom: 2.4rem; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--wood); line-height: 1; }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #8B6914; margin-top: 0.35rem; }
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.4rem; }
+  .course-card {
+    background: #fff; border: 1px solid rgba(44,24,16,0.1); border-radius: 3px;
+    padding: 1.6rem 1.7rem; text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .course-card:hover { box-shadow: 0 8px 32px rgba(44,24,16,0.12); transform: translateY(-3px); }
+  .course-subject { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+  .course-en { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--wood); }
+  .course-zh { font-size: 0.95rem; color: #8B6914; font-weight: 600; }
+  .course-hook { font-size: 0.98rem; color: var(--ink); margin: 0.8rem 0 0.5rem; font-weight: 500; }
+  .course-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+  .course-card .zh { color: #8B6914; font-size: 0.82rem; }
+  .course-go { margin-top: auto; padding-top: 1.1rem; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8B6914; }
+
+  /* ── NEWS ── */
+  #news { background: #F0EAE0; padding-top: 70px; padding-bottom: 70px; }
+  .news-item { display: grid; grid-template-columns: 1fr 1.15fr; gap: 2.4rem; align-items: start; }
   .video-frame {
     position: relative; width: 100%; aspect-ratio: 16 / 9;
     border: 1px solid rgba(44,24,16,0.12); border-radius: 3px; overflow: hidden;
     box-shadow: 0 12px 40px rgba(44,24,16,0.14); background: var(--wood);
   }
   .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .talk-meta { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #8B6914; margin-bottom: 0.6rem; }
-  .talk-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--wood); line-height: 1.4; }
-  .talk-title .zh, .talk-desc .zh { color: #8B6914; }
-  .talk-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-top: 1rem; }
-  .talk-sites-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #8B6914; margin: 1.6rem 0 0.6rem; }
-  .talk-sites { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-  .talk-sites a { font-size: 0.8rem; padding: 0.3rem 0.75rem; background: var(--wood); color: var(--cream); border-radius: 2px; text-decoration: none; transition: background 0.2s; }
-  .talk-sites a:hover { background: #8B6914; }
-  @media (max-width: 780px) { .talk-grid { grid-template-columns: 1fr; } }
+  .news-date { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #8B6914; margin-bottom: 0.5rem; }
+  .news-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--wood); line-height: 1.4; }
+  .news-title .zh, .news-desc .zh { color: #8B6914; }
+  .news-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-top: 0.9rem; }
+  .news-links { margin-top: 1.2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .news-links a { font-size: 0.8rem; color: var(--wood); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+  .news-links a:hover { color: #8B6914; }
+  @media (max-width: 780px) { .news-item { grid-template-columns: 1fr; } }
 
   /* ── PROJECTS ── */
-  #projects { background: var(--cream); }
+  #projects { background: #F0EAE0; }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem; }
   .project-card {
     background: #fff;
@@ -364,11 +385,10 @@
 <nav>
   <a class="nav-logo" href="#hero">Jackie Chien · 錢世傑</a>
   <ul class="nav-links">
-    <li><a href="#talk">Talk</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#news">News</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#platform">Platform</a></li>
-    <li><a href="#tech">Stack</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><span class="nav-hint">hover for 中文</span></li>
   </ul>
@@ -395,8 +415,8 @@
         <span class="badge" data-bi>❤️ 188 Public Welfare Classes 2026 <span class="zh-inline">公益課程</span></span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="https://github.com/mjib007" target="_blank">View GitHub</a>
-        <a class="btn btn-ghost" href="#projects">See Projects</a>
+        <a class="btn btn-primary" href="#courses">Explore Courses</a>
+        <a class="btn btn-ghost" href="https://github.com/mjib007" target="_blank">View GitHub</a>
       </div>
     </div>
     <!-- RIGHT: photo -->
@@ -409,13 +429,81 @@
   </div>
 </section>
 
-<!-- FEATURED TALK -->
-<section id="talk">
+<!-- COURSES -->
+<section id="courses">
+  <div class="container">
+    <p class="section-label reveal">Course Sites · 課程網站</p>
+    <h2 class="section-title reveal">Law, Learned Through Everyday Cases</h2>
+    <div class="section-rule reveal"></div>
+    <p class="courses-intro reveal" data-bi>
+      <span class="en">Free course sites for Taiwanese law: short animations, line-by-line statute explanations, interactive practice and bar-exam essay walkthroughs. Built with AI agents, reviewed by a teacher.</span>
+      <span class="zh">免費的台灣法律課程網站：短動畫、條文逐句講解、互動練習與國考申論題示範。AI 協作製作，教師逐一把關。</span>
+    </p>
+    <div class="courses-stats reveal">
+      <div><div class="stat-num">7</div><div class="stat-label">Course sites</div></div>
+      <div><div class="stat-num">100+</div><div class="stat-label">Animated lessons</div></div>
+      <div><div class="stat-num">Free</div><div class="stat-label">Open on GitHub</div></div>
+    </div>
+    <div class="course-grid">
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/civil-law-interpretation/" target="_blank">
+        <div class="course-subject"><span class="course-en">Civil Law</span><span class="course-zh">民法</span></div>
+        <div class="course-hook">爸爸留下的地，怎麼分？</div>
+        <div class="course-desc">Everyday cases across the Civil Code: general principles, obligations, property, family and succession.</div>
+        <span class="zh">從生活案例讀懂民法：總則、債編、物權、親屬、繼承。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/criminal-law-interpretation/" target="_blank">
+        <div class="course-subject"><span class="course-en">Criminal Law</span><span class="course-zh">刑法</span></div>
+        <div class="course-hook">總則到分則，一個觀念一支動畫</div>
+        <div class="course-desc">General and specific parts of the Criminal Code (Art. 1–363), built with AI agents and teacher review.</div>
+        <span class="zh">刑法總則與分則（§1–363），AI 協作製作、教師把關。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/civil-procedure-law-interpretation/" target="_blank">
+        <div class="course-subject"><span class="course-en">Civil Procedure</span><span class="course-zh">民事訴訟法</span></div>
+        <div class="course-hook">二哥輸了，能不能再告一次？</div>
+        <div class="course-desc">How a lawsuit works, from jurisdiction and evidence to appeals, retrial, payment orders and provisional attachment.</div>
+        <span class="zh">從管轄、證據到上訴、再審、支付命令、假扣押，讀懂打官司。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/administrative-law/" target="_blank">
+        <div class="course-subject"><span class="course-en">Administrative Law</span><span class="course-zh">行政法</span></div>
+        <div class="course-hook">收到政府公文，先看內容，不看名稱</div>
+        <div class="course-desc">Starting with the Administrative Procedure Act: dispositions, hearings, service, revocation and conditions.</div>
+        <span class="zh">從行政程序法起步：行政處分、陳述意見、送達、撤銷廢止、附款。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/land-law-interpretation/" target="_blank">
+        <div class="course-subject"><span class="course-en">Land Law</span><span class="course-zh">土地法規</span></div>
+        <div class="course-hook">我家的地，被畫成公園了？</div>
+        <div class="course-desc">Urban planning, land expropriation and land law, starting with land reserved for public facilities.</div>
+        <span class="zh">都市計畫法、土地徵收條例與土地法，從公共設施保留地開始。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/fair-trade-law-interpretation/" target="_blank">
+        <div class="course-subject"><span class="course-en">Fair Trade Law</span><span class="course-zh">公平交易法</span></div>
+        <div class="course-hook">廣告可以誇張到什麼程度？</div>
+        <div class="course-desc">Competition and consumer protection, starting with false and misleading advertising.</div>
+        <span class="zh">從不實廣告開始，讀懂公平交易法。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+      <a class="course-card reveal" data-bi href="https://mjib007.github.io/company-law-cases/" target="_blank">
+        <div class="course-subject"><span class="course-en">Company Law Cases</span><span class="course-zh">公司法案例</span></div>
+        <div class="course-hook">從新聞讀懂公司法與證交法</div>
+        <div class="course-desc">Company and securities law case studies drawn from current news, used in a university commercial law course.</div>
+        <span class="zh">公司法、證券交易法新聞案例集，搭配大學商事法課程。</span>
+        <div class="course-go">Open course site →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
   <div class="container reveal">
-    <p class="section-label">Featured Talk · TAAI 2026</p>
-    <h2 class="section-title">From Illustrated Law to Animated Law</h2>
-    <div class="section-rule"></div>
-    <div class="talk-grid">
+    <p class="section-label">Latest News · 最新消息</p>
+    <div class="section-rule" style="margin-top:0.6rem"></div>
+    <div class="news-item">
       <div class="video-frame">
         <iframe src="https://www.youtube-nocookie.com/embed/3Iz3-9Vrx1o"
                 title="從法律圖解化到法律動畫化｜TAAI 2026｜錢世傑"
@@ -425,24 +513,18 @@
                 allowfullscreen></iframe>
       </div>
       <div>
-        <p class="talk-meta">Nov 21, 2026 · Cross-Domain AI Sustainable Innovation, Session 3</p>
-        <div class="talk-title" data-bi>
-          <span class="en">Sustainable Innovation in Legal Teaching Materials through Generative AI Collaboration</span>
-          <span class="zh">從法律圖解化到法律動畫化：生成式 AI 協作下的法學教材永續創新</span>
+        <p class="news-date">Nov 21, 2026 · TAAI 2026 International Conference</p>
+        <div class="news-title" data-bi>
+          <span class="en">Talk video: From Illustrated Law to Animated Law</span>
+          <span class="zh">研討會簡報影音分享：從法律圖解化到法律動畫化</span>
         </div>
-        <div class="talk-desc" data-bi>
-          <span class="en">How a single teacher working with AI agents turned bar-exam essay questions into 100+ animated lessons: AI drafts the script, code draws every frame, and the teacher keeps the final say at three review gates.</span>
-          <span class="zh">一位老師加上 AI Agent，把律師考試申論題做成一百多支動畫：AI 寫腳本、程式逐格繪圖，教師在三道關卡做最後把關。</span>
+        <div class="news-desc" data-bi>
+          <span class="en">Slides and narration from my talk at TAAI 2026 (Cross-Domain AI Sustainable Innovation, Session 3): how AI agents and code turn bar-exam essay questions into animated lessons, with the teacher keeping the final say.</span>
+          <span class="zh">11/21 參加 TAAI 2026 國際研討會（跨域 AI 永續創新・場次 3）的簡報影音：AI 協作與程式繪圖如何把律師考題做成動畫，教師保留最後把關。</span>
         </div>
-        <p class="talk-sites-label">Open course sites · 課程網站</p>
-        <div class="talk-sites">
-          <a href="https://mjib007.github.io/civil-law-interpretation/" target="_blank">民法</a>
-          <a href="https://mjib007.github.io/criminal-law-interpretation/" target="_blank">刑法</a>
-          <a href="https://mjib007.github.io/civil-procedure-law-interpretation/" target="_blank">民事訴訟法</a>
-          <a href="https://mjib007.github.io/administrative-law/" target="_blank">行政法</a>
-          <a href="https://mjib007.github.io/land-law-interpretation/" target="_blank">土地法</a>
-          <a href="https://mjib007.github.io/fair-trade-law-interpretation/" target="_blank">公平交易法</a>
-          <a href="https://mjib007.github.io/company-law-cases/" target="_blank">公司法案例</a>
+        <div class="news-links">
+          <a href="https://youtu.be/3Iz3-9Vrx1o" target="_blank">Watch on YouTube</a>
+          <a href="https://taai2026.github.io/" target="_blank">TAAI 2026</a>
         </div>
       </div>
     </div>
@@ -498,11 +580,69 @@
   </div>
 </section>
 
+<!-- PLATFORM -->
+<section id="platform">
+  <div class="container">
+    <p class="section-label reveal">Investigative Platform</p>
+    <h2 class="section-title reveal">Holmes &amp; Watson AI Investigation</h2>
+    <div class="section-rule reveal"></div>
+    <p class="platform-intro reveal" data-bi>
+      <span class="en">An eight-stage AI-assisted investigative workflow designed for frontline law enforcement, spanning 17 integrated systems from case discovery to prosecution.</span>
+      <span class="zh">針對第一線執法人員設計的八階段辦案工作流程，整合 17 個系統，從案源發現到判決全程 AI 輔助。</span>
+    </p>
+    <div class="stages-grid">
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 01</div><div class="stage-name">Case Source Discovery</div><span class="zh">案源發現</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 02</div><div class="stage-name">Evidence Gathering</div><span class="zh">證據蒐集</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 03</div><div class="stage-name">Case Analysis</div><span class="zh">案情分析</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 04</div><div class="stage-name">Target Identification</div><span class="zh">目標鎖定</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 05</div><div class="stage-name">Search &amp; Arrest</div><span class="zh">搜索逮捕</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 06</div><div class="stage-name">Interrogation</div><span class="zh">偵訊</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 07</div><div class="stage-name">Case Transfer</div><span class="zh">移送</span></div>
+      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 08</div><div class="stage-name">Prosecution &amp; Judgment</div><span class="zh">起訴與判決</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="container">
+    <p class="section-label reveal">Tech Stack</p>
+    <h2 class="section-title reveal">Tools &amp; Technologies</h2>
+    <div class="section-rule reveal"></div>
+    <div class="tech-groups">
+      <div class="reveal">
+        <div class="tech-group-title">Languages</div>
+        <div class="tech-pills">
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="tech-group-title">AI / ML</div>
+        <div class="tech-pills">
+          <span class="pill">GPT-4o</span><span class="pill">Gemini 2.5</span><span class="pill">Claude</span><span class="pill">YOLOv8</span><span class="pill">TimesFM</span><span class="pill">Prophet</span><span class="pill">Chronos-Bolt</span><span class="pill">Whisper</span><span class="pill">Scikit-learn</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="tech-group-title">Backend &amp; Data</div>
+        <div class="tech-pills">
+          <span class="pill">Flask</span><span class="pill">FastAPI</span><span class="pill">Pandas</span><span class="pill">DuckDB</span><span class="pill">yfinance</span><span class="pill">FinMind</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="tech-group-title">Automation &amp; Infra</div>
+        <div class="tech-pills">
+          <span class="pill">Playwright</span><span class="pill">Docker</span><span class="pill">Home Assistant</span><span class="pill">n8n</span><span class="pill">Zeabur</span><span class="pill">GitHub Actions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="container">
-    <p class="section-label reveal">Featured Projects</p>
-    <h2 class="section-title reveal">Open Source Work</h2>
+    <p class="section-label reveal">Earlier Projects</p>
+    <h2 class="section-title reveal">Earlier Open Source Work</h2>
     <div class="section-rule reveal"></div>
     <div class="projects-grid">
 
@@ -570,64 +710,6 @@
         <div class="project-tags"><span class="tag">AI Education</span><span class="tag">Public Welfare</span><span class="tag">Traditional Chinese</span></div>
       </a>
 
-    </div>
-  </div>
-</section>
-
-<!-- PLATFORM -->
-<section id="platform">
-  <div class="container">
-    <p class="section-label reveal">Investigative Platform</p>
-    <h2 class="section-title reveal">Holmes &amp; Watson AI Investigation</h2>
-    <div class="section-rule reveal"></div>
-    <p class="platform-intro reveal" data-bi>
-      <span class="en">An eight-stage AI-assisted investigative workflow designed for frontline law enforcement, spanning 17 integrated systems from case discovery to prosecution.</span>
-      <span class="zh">針對第一線執法人員設計的八階段辦案工作流程，整合 17 個系統，從案源發現到判決全程 AI 輔助。</span>
-    </p>
-    <div class="stages-grid">
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 01</div><div class="stage-name">Case Source Discovery</div><span class="zh">案源發現</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 02</div><div class="stage-name">Evidence Gathering</div><span class="zh">證據蒐集</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 03</div><div class="stage-name">Case Analysis</div><span class="zh">案情分析</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 04</div><div class="stage-name">Target Identification</div><span class="zh">目標鎖定</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 05</div><div class="stage-name">Search &amp; Arrest</div><span class="zh">搜索逮捕</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 06</div><div class="stage-name">Interrogation</div><span class="zh">偵訊</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 07</div><div class="stage-name">Case Transfer</div><span class="zh">移送</span></div>
-      <div class="stage-card reveal" data-bi><div class="stage-num">Stage 08</div><div class="stage-name">Prosecution &amp; Judgment</div><span class="zh">起訴與判決</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section id="tech">
-  <div class="container">
-    <p class="section-label reveal">Tech Stack</p>
-    <h2 class="section-title reveal">Tools &amp; Technologies</h2>
-    <div class="section-rule reveal"></div>
-    <div class="tech-groups">
-      <div class="reveal">
-        <div class="tech-group-title">Languages</div>
-        <div class="tech-pills">
-          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">JavaScript</span><span class="pill">TypeScript</span>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="tech-group-title">AI / ML</div>
-        <div class="tech-pills">
-          <span class="pill">GPT-4o</span><span class="pill">Gemini 2.5</span><span class="pill">Claude</span><span class="pill">YOLOv8</span><span class="pill">TimesFM</span><span class="pill">Prophet</span><span class="pill">Chronos-Bolt</span><span class="pill">Whisper</span><span class="pill">Scikit-learn</span>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="tech-group-title">Backend &amp; Data</div>
-        <div class="tech-pills">
-          <span class="pill">Flask</span><span class="pill">FastAPI</span><span class="pill">Pandas</span><span class="pill">DuckDB</span><span class="pill">yfinance</span><span class="pill">FinMind</span>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="tech-group-title">Automation &amp; Infra</div>
-        <div class="tech-pills">
-          <span class="pill">Playwright</span><span class="pill">Docker</span><span class="pill">Home Assistant</span><span class="pill">n8n</span><span class="pill">Zeabur</span><span class="pill">GitHub Actions</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
