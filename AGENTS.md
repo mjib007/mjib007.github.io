@@ -24,6 +24,10 @@
 
 - 2026-11-21：TAAI 2026 國際研討會簡報影音（中文 https://youtu.be/3Iz3-9Vrx1o ，英文 https://youtu.be/4W_V0Ph81s0 ）
 
-## 課程網站卡片
+## 課程區（Jackie 的重點：申論題動畫影片＋互動講義）
 
-新增課程網站時，在 `<!-- COURSES -->` 的 `.course-grid` 加一張 `.course-card`（科目英中名、該網站首頁的引題、英文簡介、中文 `.zh`），並更新上方的統計數字。
+`<!-- COURSES -->` 由上到下：
+1. 主標「Bar-Exam Essay Questions, Animated」與中文副標（中文直接顯示，不要藏在滑鼠移過去才出現）。
+2. `.showcase` 兩張示意圖：動畫影片（`assets/essay-video.jpg`）、互動講義（`assets/essay-handout.jpg`）。
+3. 「挑一題試試」`.essay-grid`：6 張申論題卡片，連到民法網站的 `lectures/exam-*.html`；按鈕連到民法網站 `#library`。有新的代表性題目時可替換，維持 6 張。
+4. 「各科課程網站」`.course-grid`：新增課程網站時加一張 `.course-card`（科目英中名、該網站首頁的引題、英文簡介、中文 `.zh`）。

@@ -280,6 +280,31 @@
   .course-card .zh { color: #8B6914; font-size: 0.82rem; }
   .course-go { margin-top: auto; padding-top: 1.1rem; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8B6914; }
 
+  /* ── ESSAY FOCUS ── */
+  .focus-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #8B6914; margin-bottom: 0.6rem; }
+  .focus-sub { font-size: 1.25rem; color: var(--wood); font-weight: 600; margin-top: 0.3rem; }
+  .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 3rem; }
+  .show-item { background: #fff; border: 1px solid rgba(44,24,16,0.1); border-radius: 3px; padding: 1.2rem 1.3rem 1.4rem; position: relative; }
+  .show-item img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 2px; border: 1px solid rgba(44,24,16,0.08); display: block; }
+  .show-num { position: absolute; top: -0.9rem; left: -0.9rem; box-shadow: 0 2px 8px rgba(44,24,16,0.2); width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--gold); color: var(--ink); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .show-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--wood); margin: 1rem 0 0.5rem; }
+  .show-title span { font-family: 'Inter', sans-serif; font-size: 1rem; color: #8B6914; margin-left: 0.4rem; }
+  .show-item ul { list-style: none; }
+  .show-item li { font-size: 0.92rem; color: var(--ink); padding: 0.25rem 0 0.25rem 1.1rem; position: relative; }
+  .show-item li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .essay-head, .subject-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .essay-head h3, .subject-head h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--wood); }
+  .subject-head { margin-top: 3.2rem; display: block; }
+  .subject-head p { font-size: 0.92rem; color: var(--muted); margin-top: 0.3rem; }
+  .essay-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+  .essay-card { background: var(--wood); color: var(--cream); text-decoration: none; border-radius: 3px; padding: 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .essay-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(44,24,16,0.25); }
+  .essay-dur { font-size: 0.78rem; color: var(--gold-lt); letter-spacing: 0.06em; }
+  .essay-q { font-size: 1.08rem; font-weight: 600; line-height: 1.5; }
+  .essay-meta { font-size: 0.8rem; color: rgba(245,240,232,0.7); line-height: 1.5; }
+  .essay-meta span { color: rgba(226,201,126,0.75); }
+  @media (max-width: 780px) { .showcase { grid-template-columns: 1fr; } }
+
   /* ── NEWS ── */
   #news { background: #FBF1D6; padding-top: 80px; padding-bottom: 80px;
           border-top: 3px solid var(--gold); border-bottom: 1px solid var(--border); }
@@ -477,17 +502,74 @@
 <!-- COURSES -->
 <section id="courses">
   <div class="container">
-    <p class="section-label reveal">Course Sites · 課程網站</p>
-    <h2 class="section-title reveal">Law, Learned Through Everyday Cases</h2>
+    <p class="focus-label reveal">My focus · 我的重點</p>
+    <h2 class="section-title reveal">Bar-Exam Essay Questions, Animated</h2>
+    <p class="focus-sub reveal">律師考題申論題：一題一支動畫影片＋一頁互動講義</p>
     <div class="section-rule reveal"></div>
-    <p class="courses-intro reveal" data-bi>
-      <span class="en">Free course sites for Taiwanese law: short animations, line-by-line statute explanations, interactive practice and bar-exam essay walkthroughs. Built with AI agents, reviewed by a teacher.</span>
-      <span class="zh">免費的台灣法律課程網站：短動畫、條文逐句講解、互動練習與國考申論題示範。AI 協作製作，教師逐一把關。</span>
-    </p>
-    <div class="courses-stats reveal">
-      <div><div class="stat-num">7</div><div class="stat-label">Course sites</div></div>
-      <div><div class="stat-num">100+</div><div class="stat-label">Animated lessons</div></div>
-      <div><div class="stat-num">Free</div><div class="stat-label">Open on GitHub</div></div>
+
+    <div class="showcase reveal">
+      <div class="show-item">
+        <img src="assets/essay-video.jpg" alt="申論題動畫畫面：讀題，關鍵事實畫螢光筆" loading="lazy">
+        <div class="show-num">1</div>
+        <div class="show-title">Animated video <span>動畫影片</span></div>
+        <ul>
+          <li>3–5 分鐘，旁白講到哪裡、畫面亮到哪裡</li>
+          <li>讀題 → 找爭點 → 大前提 → 套用事實，一步一步示範</li>
+          <li>中文字幕，YouTube 公開</li>
+        </ul>
+      </div>
+      <div class="show-item">
+        <img src="assets/essay-handout.jpg" alt="互動講義：關係圖可點按鈕切換" loading="lazy">
+        <div class="show-num">2</div>
+        <div class="show-title">Interactive handout <span>互動網頁講義</span></div>
+        <ul>
+          <li>題目畫線、嵌入影片、關係圖可點選切換</li>
+          <li>條文、判決要件表與答題地圖</li>
+          <li>擬答字數控制在考場寫得完的長度</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="essay-head reveal">
+      <h3>Try one · 挑一題試試</h3>
+      <a class="btn btn-primary" href="https://mjib007.github.io/civil-law-interpretation/#library" target="_blank">All essay lessons · 全部申論題 →</a>
+    </div>
+    <div class="essay-grid reveal">
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-112-lawyer-civil-q2-2.html" target="_blank">
+        <span class="essay-dur">▶ 3:05</span>
+        <div class="essay-q">甲走了，戊也走了，遺產給誰？</div>
+        <div class="essay-meta">112 律師二試 · 繼承<br><span>2023 Bar Exam · Succession</span></div>
+      </a>
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-112-lawyer-civil-q2-1.html" target="_blank">
+        <span class="essay-dur">▶ 3:54</span>
+        <div class="essay-q">外遇離家20年，能先訴請離婚嗎？</div>
+        <div class="essay-meta">112 律師二試 · 親屬<br><span>2023 Bar Exam · Divorce</span></div>
+      </a>
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-111-lawyer-civil-q1-1.html" target="_blank">
+        <span class="essay-dur">▶ 2:42</span>
+        <div class="essay-q">房子借兒子的名，爸爸過世後怎麼辦？</div>
+        <div class="essay-meta">111 律師二試 · 借名登記<br><span>2022 Bar Exam · Nominee registration</span></div>
+      </a>
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-113-lawyer-civil-q2-3.html" target="_blank">
+        <span class="essay-dur">▶ 4:15</span>
+        <div class="essay-q">同一筆工程款讓了兩次，付給誰算數？</div>
+        <div class="essay-meta">113 律師二試 · 債權讓與<br><span>2024 Bar Exam · Double assignment</span></div>
+      </a>
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-114-lawyer-civil-q1-2.html" target="_blank">
+        <span class="essay-dur">▶ 3:48</span>
+        <div class="essay-q">同居人拿印章設定抵押，要負責嗎？</div>
+        <div class="essay-meta">114 律師二試 · 表見代理<br><span>2025 Bar Exam · Apparent agency</span></div>
+      </a>
+      <a class="essay-card" href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-110-household-civil-q1.html" target="_blank">
+        <span class="essay-dur">▶ 4:01</span>
+        <div class="essay-q">LINE 訊息打錯價格，能撤銷嗎？</div>
+        <div class="essay-meta">110 高考 · 錯誤撤銷<br><span>2021 Civil Service Exam · Mistake</span></div>
+      </a>
+    </div>
+
+    <div class="subject-head reveal">
+      <h3>Course sites by subject · 各科課程網站</h3>
+      <p>每個網站都有動畫影片、條文逐句講解與互動練習。</p>
     </div>
     <div class="course-grid">
       <a class="course-card reveal" data-bi href="https://mjib007.github.io/civil-law-interpretation/" target="_blank">
