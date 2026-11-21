@@ -24,6 +24,10 @@
 
 - 2026-11-21：TAAI 2026 國際研討會簡報影音（中文 https://youtu.be/3Iz3-9Vrx1o ，英文 https://youtu.be/4W_V0Ph81s0 ）
 
+## 訪客計數器
+
+封面按鈕下方的 `.visitor-count`，用 visitor-badge.laobi.icu（與刑法網站相同服務），`page_id=mjib007.github.io`。每載入一次加 1，所以全頁只能放一個；本機預覽也會計數，預覽次數不要太多。
+
 ## 課程區（Jackie 的重點：申論題動畫影片＋互動講義）
 
 `<!-- COURSES -->` 由上到下：
