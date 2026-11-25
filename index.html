@@ -327,6 +327,8 @@
     box-shadow: 0 12px 40px rgba(44,24,16,0.14); background: var(--wood);
   }
   .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .news-item + .news-item { margin-top: 2.8rem; padding-top: 2.8rem; border-top: 1px solid rgba(44,24,16,0.12); }
   .news-date { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #8B6914; margin-bottom: 0.5rem; }
   .news-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--wood); line-height: 1.4; }
   .news-title .zh, .news-desc .zh { color: #8B6914; }
@@ -466,8 +468,29 @@
 <section id="news">
   <div class="container reveal">
     <p class="section-label"><span class="new-badge">NEW</span> Latest News · 最新消息</p>
-    <h2 class="section-title">TAAI 2026 Talk Video · 研討會簡報影音</h2>
+    <h2 class="section-title">Six Civil Law Essays · 115年律師民法</h2>
     <div class="section-rule"></div>
+    <div class="news-item">
+      <a class="video-frame" href="https://mjib007.github.io/civil-law-interpretation/#exams" target="_blank">
+        <img src="assets/news-115-civil-essays.jpg" alt="動畫畫面：民法第1194條七格檢核表，對照兩份代筆遺囑" loading="lazy">
+      </a>
+      <div>
+        <p class="news-date">Nov 25, 2026 · Civil Law Course Site</p>
+        <div class="news-title" data-bi>
+          <span class="en">2026 bar exam (civil law): all six essay sub-questions now have handouts</span>
+          <span class="zh">115年律師二試民法：兩題六個小題，互動講義全數上線</span>
+        </div>
+        <div class="news-desc" data-bi>
+          <span class="en">Every sub-question of this year's civil-law essay exam now has an interactive handout, with animated videos rolling out: limitation periods for construction fees and toxic torts, anxiety over cancer risk, two dictated wills, a lawyer's liability to the beneficiary, and what happens to a mortgage when the house is destroyed. Answers are drafted by two AIs, compared, and finalized by the teacher; the official grading points have not been published yet.</span>
+          <span class="zh">今年律師第二試民法兩題、六個小題，每一小題都有互動講義，動畫影片陸續上線：承攬報酬時效、毒物侵權的10年時效、罹癌風險與慰撫金、兩份代筆遺囑、律師對受遺贈人的責任、抵押物滅失後賠償金誰先拿。擬答由兩個AI分別撰寫、比對，經教師定稿；考選部評分要點尚未公布。</span>
+        </div>
+        <div class="news-links">
+          <a href="https://mjib007.github.io/civil-law-interpretation/#exams" target="_blank">民法講義總覽 Civil Law</a>
+          <a href="https://mjib007.github.io/civil-law-interpretation/lectures/exam-115-lawyer-civil-q2-1.html" target="_blank">例：兩份代筆遺囑</a>
+          <a href="https://youtu.be/y3x473EaX2Q" target="_blank">第一題（一）影片 Video</a>
+        </div>
+      </div>
+    </div>
     <div class="news-item">
       <div class="video-frame">
         <iframe src="https://www.youtube-nocookie.com/embed/3Iz3-9Vrx1o"
